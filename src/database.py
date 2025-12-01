@@ -77,7 +77,7 @@ def insert_article(source_id, title, url, summary, pub_date):
 def get_untranslated_articles():
     """
     まだ処理（翻訳・解説生成）が行われていない記事を取得する。
-    一度の処理数は多めに50件設定。
+    一度の処理数は多めに150件設定。
     """
     sql = """
     SELECT 
@@ -88,7 +88,7 @@ def get_untranslated_articles():
     FROM articles a
     JOIN sources s ON a.source_id = s.source_id
     WHERE a.translated_title IS NULL
-    LIMIT 50;
+    LIMIT 150;
     """
     with get_db_connection() as conn:
         return conn.execute(sql).fetchall()
